@@ -17,7 +17,6 @@ app.get("/", function(req, res, next) {
         let data = req.query;
         let queryString = Object.keys(req.query).map(function (key) { return `${key}='${req.query[key]}'` }).join(' and ')
         let query = `SELECT floor, room, status, id FROM ${form} where ${queryString} `
-        console.log(query)
         let values = []
         client.query(query, values, function(err, result) {
             done();
