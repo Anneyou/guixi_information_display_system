@@ -24,7 +24,7 @@ app.get("/", function(req, res, next) {
                 console.log(err);
                 res.status(400).send(err);
             }
-            data.result = res.result
+            data.result = result.rows
             res.status(200).send(data);
         });
     });

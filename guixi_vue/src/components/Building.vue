@@ -8,12 +8,14 @@
       </div>
     </template>
     <template slot="fieldsList">
-      <template v-for="(unit, index) in units">
-        <router-link :to="{name: 'Unit', query: {home: home, building: building, unit: unit }}" :key="index" class="community-home-body-item">
-          <i class="icon-icon_danyuan"></i>
-          <span class="building-name">{{ unit }}单元</span>
-        </router-link>
-      </template>
+      <div class="building-unit">
+        <template v-for="(unit, index) in units">
+          <router-link :to="{name: 'Unit', query: {home: home, building: building, unit: unit }}" :key="index" class="community-home-body-item">
+            <i class="icon-icon_danyuan"></i>
+            <span class="building-name">{{ unit }}单元</span>
+          </router-link>
+        </template>
+      </div>
     </template>
   </Common>
 </template>
@@ -63,6 +65,11 @@ export default {
   color: #bdbdbd;
   line-height: 1.5;
   text-align: right;
+}
+
+.building-unit {
+  flex: 1;
+  display: flex;
 }
 
 .community-home-body-item {

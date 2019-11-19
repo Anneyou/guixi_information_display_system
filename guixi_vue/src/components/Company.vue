@@ -5,10 +5,23 @@
     </template>
     <template slot="fieldsList">
       <div class="company-body">
-        <div class="title">{{ company }}</div>
-        <div class="list"></div>
+        <div class="title">{{ information.company }}</div>
+        <div class="list">
+          <div class="list-item">
+            <div class="left-head">企业联络人及联系方式</div>
+            <div class="right-body">{{ information.business_contact }}</div>
+          </div>
+          <div class="list-item">
+            <div class="left-head">网格协管员及联系电话</div>
+            <div class="right-body">{{ information.grid_coordinator }}</div>
+          </div>
+          <div class="list-item">
+            <div class="left-head">社区民警及联系电话</div>
+            <div class="right-body">{{ information.community_police }}</div>
+          </div>
+        </div>
       </div>
-      <button class="error-correction-button">查看企业信息</button>
+      <router-link :to="{name: 'Enterprise', query: {company: information.company}}" class="error-correction-button">查看企业信息</router-link>
     </template>
   </Common>
 </template>
@@ -25,7 +38,7 @@ export default {
 
   data () {
     return {
-      company: ''
+      information: {}
     }
   },
 
@@ -39,9 +52,7 @@ export default {
     doRequst () {
       axios.get(this.baseUrl + 'company?' + this.getQueryString())
         .then(res => {
-          console.log(res)
-          // this.home = res.data.company
-          // this.buildings = res.data.result
+          this.information = res.data.result[0]
         })
         .catch(err => { console.log(err) })
     }
@@ -59,36 +70,41 @@ export default {
   text-align: right;
 }
 
-.community-home-body-item {
-  height: 4.8rem;
-  width: 3.8rem;
+.company-body {
+  flex: 1;
+  width: 100%;
   background-color: white;
-  padding: .6rem .4rem .4rem;
-  box-sizing: border-box;
   border-radius: .3rem;
-  margin-bottom: .4rem;
+  padding: 0 .9rem;
+}
+
+.company-body > .title {
+  height: 2.25rem;
+  font-size: .6rem;
+  color: #95a4b3;
+  line-height: 1.5;
+  border-bottom: .05rem solid #e9eaeb;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
+  align-items: center;
 }
 
-.icon-icon_dong {
-  background-image: linear-gradient(to right,#f08200, #f45e06);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.building-name {
-  font-size: .7rem;
+.company-body .list-item {
+  height: 2.25rem;
+  font-size: .6rem;
   color: #8d8d8d;
   line-height: 1.5;
-  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: .05rem solid #e9eaeb;
 }
 
 .error-correction-button {
   height: 2rem;;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: .7rem;
   color: white;
   line-height: 1.5;

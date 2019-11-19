@@ -5,12 +5,14 @@
       <div class="community-name">{{ home }}</div>
     </template>
     <template slot="fieldsList">
-      <template v-for="building in buildings">
-        <router-link :to="{name: 'Building', query: { home: home, building: building}}" :key="building.id" class="community-home-body-item">
-          <i class="icon-icon_dong"></i>
-          <span class="building-name">{{ building }}栋</span>
-        </router-link>
-      </template>
+      <div class="home-building">
+        <template v-for="building in buildings">
+          <router-link :to="{name: 'Building', query: { home: home, building: building}}" :key="building.id" class="community-home-body-item">
+            <i class="icon-icon_dong"></i>
+            <span class="building-name">{{ building }}栋</span>
+          </router-link>
+        </template>
+      </div>
     </template>
   </Common>
 </template>
@@ -59,6 +61,12 @@ export default {
   color: #bdbdbd;
   line-height: 1.5;
   text-align: right;
+}
+
+.home-building {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .community-home-body-item {
