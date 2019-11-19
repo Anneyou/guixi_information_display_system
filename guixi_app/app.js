@@ -7,6 +7,7 @@ var homeRouter = require('./routes/home');
 var buildingRouter = require('./routes/building');
 var unitRouter = require('./routes/unit');
 var companyRouter = require('./routes/company');
+var enterpriseRouter = require('./routes/enterprise');
 var app = express();
 
 // view engine setup
@@ -22,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //设置跨域访问
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Cache-Control","no-cache");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -37,6 +38,7 @@ app.use('/home', homeRouter);
 app.use('/building', buildingRouter);
 app.use('/unit', unitRouter);
 app.use('/company', companyRouter);
+app.use('/enterprise', enterpriseRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
