@@ -14,9 +14,10 @@ export default {
 @import './assets/fonts/style.css';
 
 #app {
-  min-height: 100%;
+  height: 100%;
   padding: 3rem 1rem 0;
   background: url('./assets/image_bg.png');
   background-size: cover;
+  overflow: auto;
 }
 </style>
