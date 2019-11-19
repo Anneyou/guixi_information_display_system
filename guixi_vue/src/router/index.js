@@ -5,13 +5,15 @@ import Building from '@/components/Building'
 import Unit from '@/components/Unit'
 import Company from '@/components/Company'
 import Enterprise from '@/components/Enterprise'
+import guixiVue from './config'
 
 Vue.use(Router)
 
-Vue.prototype.baseUrl = 'http://localhost:3000/'
-Vue.prototype.baseCompany = '成都高新区桂溪街道办事处'
+Vue.prototype.baseUrl = guixiVue.baseUrl
 
-Vue.prototype.baseDescription = '人口服务管理社会化信息采集点'
+Vue.prototype.baseCompany = guixiVue.baseCompany
+
+Vue.prototype.baseDescription = guixiVue.baseDescription
 
 export default new Router({
   routes: [

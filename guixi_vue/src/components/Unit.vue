@@ -113,6 +113,7 @@ import Common from './Common'
 import axios from 'axios'
 import Modal from './Modal'
 import Mixin from './Mixin'
+import guixiVue from '../router/config'
 
 export default {
   mixins: [ Mixin ],
@@ -182,6 +183,9 @@ export default {
 
     openModal () {
       this.$refs.modalRef.open()
+      setTimeout(function () {
+        location.href = `https://${guixiVue.redirectBaseUrl}/namespaces/${guixiVue.namespace}/yet_another_workflow/flows/${guixiVue.flow_id}/journeys/new`
+      }, 3000)
     }
   }
 }
