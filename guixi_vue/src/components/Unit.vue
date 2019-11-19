@@ -141,7 +141,7 @@ export default {
           this.building = res.data.building
           this.unit = res.data.unit
           this.floors = res.data.floors
-          this.houses = res.data.floors[0].data
+          this.houses = res.data.floors[res.data.floors.length - 1].data
         })
     },
 
@@ -188,6 +188,10 @@ export default {
 </script>
 
 <style>
+#app > div {
+  height: 100%;
+}
+
 .community-name {
   margin-top: .4rem;
   font-size: .7rem;
@@ -196,17 +200,27 @@ export default {
   text-align: right;
 }
 
+.community-home-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .room-table {
+  flex: 1;
   padding: 0 1rem .4rem;
   background-color: white;
   width: 100%;
   border-radius: .3rem;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .datable-table-container {
   display: flex;
-  max-height: 14.4rem;
   overflow: hidden;
   justify-content: center;
 }
@@ -228,6 +242,7 @@ export default {
   height: 100%;
   overflow-y: auto;
 }
+
 .fixed-table > .scroll-container::-webkit-scrollbar {
   width: 0 !important;
 }
@@ -254,7 +269,6 @@ export default {
 }
 
 .body-table {
-  max-width: 100%;
   overflow: hidden;
 }
 
