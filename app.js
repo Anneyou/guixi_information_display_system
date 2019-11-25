@@ -8,6 +8,7 @@ var buildingRouter = require('./routes/building');
 var unitRouter = require('./routes/unit');
 var companyRouter = require('./routes/company');
 var enterpriseRouter = require('./routes/enterprise');
+var authorizedRouter = require('./routes/authorized');
 var app = express();
 
 // view engine setup
@@ -33,12 +34,12 @@ app.use(function (req, res, next) {
 });
 
 
-
 app.use('/home', homeRouter);
 app.use('/building', buildingRouter);
 app.use('/unit', unitRouter);
 app.use('/company', companyRouter);
 app.use('/enterprise', enterpriseRouter);
+app.use('/authorized', authorizedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,6 +2,7 @@ let express = require('express')
 var app = express();
 const { Pool } = require('pg');
 let db = require('../db/index');
+let authorize = require('../authorize/index');
 
 const pool = new Pool({
     connectionString: db.conStr
@@ -24,6 +25,8 @@ app.get("/", function(req, res, next) {
                 console.log(err);
                 res.status(400).send(err);
             }
+            data.authorizedRedirectUrl = authorize.requestBaseUrl
+            data.clientId = authorize.clientID
             data.result = result.rows
             res.status(200).send(data);
         });

@@ -2,6 +2,7 @@ let express = require('express')
 var app = express();
 const { Pool } = require('pg');
 let db = require('../db/index');
+let authorize = require('../authorize/index');
 
 const pool = new Pool({
     connectionString: db.conStr
@@ -45,6 +46,7 @@ app.get("/", function(req, res, next) {
                 }
               }
             }
+            data.redirectUrl = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/yet_another_workflow/flows/${db.home_flow_id}/journeys/new`
             data.floors = dest
             res.status(200).send(data);
         });

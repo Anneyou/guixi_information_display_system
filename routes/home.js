@@ -15,7 +15,7 @@ app.get("/", function(req, res, next) {
             res.status(400).send(err);
         }
         let data = req.query;
-        let queryString = Object.keys(req.query).map(function (key) { return `${key}='${req.query[key]}'` }).join(' = ')
+        let queryString = Object.keys(req.query).map(function (key) { return `${key}='${req.query[key]}'` }).join(' and ')
         let query = `SELECT distinct building FROM ${form} where ${queryString}`
         let values = []
         client.query(query, values, function(err, result) {

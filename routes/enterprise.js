@@ -2,6 +2,7 @@ let express = require('express')
 var app = express();
 const { Pool } = require('pg');
 let db = require('../db/index');
+let authorize = require('../authorize/index');
 
 const pool = new Pool({
     connectionString: db.conStr
@@ -25,6 +26,11 @@ app.get("/", function(req, res, next) {
                 res.status(400).send(err);
             }
             data.result = result.rows
+            if(result.rows[0]) {
+              data.response_url = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/forms/${db.enterprise_form_id}/responses/${result.rows[0].response_id}`
+            } else {
+              data.response_url = ''
+            }
             res.status(200).send(data);
         });
     });
