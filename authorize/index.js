@@ -1,5 +1,5 @@
 let authorize = {
-  redirectUrl: 'http://skylark-local.natappvip.cc/authorized',
+  redirectUrl: 'http://skylark-local.natappvip.cc/guixi_app/authorized',
   requestBaseUrl: 'https://beta.skylarkly.com',
   appid: 'f56eb731ec1d00fac24b789f1efe04ac1d1d1663e3bd35d270fb4055cf124f24',
   appsecret: '83af0d8a2425bafec336364c82968696f3598db3ac3b809e4107e4cd54784d9e',

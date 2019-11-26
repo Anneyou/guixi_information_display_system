@@ -36,6 +36,7 @@ app.get("/", function(req, res, next) {
               }
             }, (e, r, b) => {
               if (!e && r.statusCode == 200) {
+                console.log(b)
                 res.status(200).send(b);
               }
             })
