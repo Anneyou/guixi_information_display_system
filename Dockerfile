@@ -13,6 +13,6 @@ COPY ./ /var/www/guixi_information_display_system/
 
 USER root
 
-WORKDIR /var/www/guixi_information_display_system/guixi_vue
+WORKDIR /var/www/guixi_information_display_system
 
 RUN npm install
