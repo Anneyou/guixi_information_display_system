@@ -10,6 +10,12 @@ var unitRouter = require('./routes/unit');
 var companyRouter = require('./routes/company');
 var enterpriseRouter = require('./routes/enterprise');
 var authorizedRouter = require('./routes/authorized');
+
+//add logger
+var fs = require('fs');
+var accessLog = fs.createWriteStream('access.log', {flags: 'a'});
+var errorLog = fs.createWriteStream('error.log', {flags: 'a'});
+
 var app = express();
 
 // view engine setup
@@ -17,10 +23,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(history());
 app.use(logger('dev'));
+app.use(logger({stream: accessLog}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('./dist'));
+app.use(function (err, req, res, next) {
+  var meta = '[' + new Date() + '] ' + req.url + '\n';
+  errorLog.write(meta + err.stack + '\n');
+  next();
+});
 
 
 //设置跨域访问
@@ -35,12 +47,12 @@ app.use(function (req, res, next) {
 });
 
 
-app.use('/home', homeRouter);
-app.use('/building', buildingRouter);
-app.use('/unit', unitRouter);
-app.use('/company', companyRouter);
-app.use('/enterprise', enterpriseRouter);
-app.use('/authorized', authorizedRouter);
+app.use('/guixi_app/server/home', homeRouter);
+app.use('/guixi_app/server/building', buildingRouter);
+app.use('/guixi_app/server/unit', unitRouter);
+app.use('/guixi_app/server/company', companyRouter);
+app.use('/guixi_app/server/enterprise', enterpriseRouter);
+app.use('/guixi_app/server/authorized', authorizedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
