@@ -23,11 +23,12 @@ app.get("/", function(req, res, next) {
             if (err) {
                 console.log(err);
                 res.status(400).send(err);
+            } else {
+              data.result = []
+              result.rows.forEach( (row) => { data.result.push(Number(row.building)) })
+              data.result.sort( (a,b) => { return a-b; })
+              res.status(200).send(data);
             }
-            data.result = []
-            result.rows.forEach( (row) => { data.result.push(Number(row.building)) })
-            data.result.sort( (a,b) => { return a-b; })
-            res.status(200).send(data);
         });
     });
 });

@@ -24,11 +24,12 @@ app.get("/", function(req, res, next) {
             if (err) {
                 console.log(err);
                 res.status(400).send(err);
+            } else {
+              data.authorizedRedirectUrl = authorize.requestBaseUrl
+              data.clientId = authorize.clientID
+              data.result = result.rows
+              res.status(200).send(data);
             }
-            data.authorizedRedirectUrl = authorize.requestBaseUrl
-            data.clientId = authorize.clientID
-            data.result = result.rows
-            res.status(200).send(data);
         });
     });
 });

@@ -26,7 +26,7 @@ app.get("/", function(req, res, next) {
                 res.status(400).send(err);
             }
             data.result = result.rows
-            data.update_url = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/yet_another_workflow/flows/${update_entrprise_flow_id}/journeys/new`
+            data.update_url = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/yet_another_workflow/flows/${db.update_entrprise_flow_id}/journeys/new`
             data.query_url= db.company_query_url
             if(result.rows[0]) {
               data.response_url = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/forms/${db.enterprise_form_id}/responses/${result.rows[0].response_id}`
