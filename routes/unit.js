@@ -46,6 +46,9 @@ app.get("/", function(req, res, next) {
                 }
               }
             }
+            dest.forEach((item) => {
+              item.data.sort((a, b) => (+a.room - +b.room))
+            })
             data.redirectUrl = `${authorize.requestBaseUrl}/namespaces/${db.namespace_id}/yet_another_workflow/flows/${db.home_flow_id}/journeys/new`
             data.floors = dest.sort((a, b) => (+a.floor - +b.floor))
             res.status(200).send(data);
