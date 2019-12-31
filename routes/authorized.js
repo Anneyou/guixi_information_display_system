@@ -38,6 +38,9 @@ app.get("/", function(req, res, next) {
               if (!e && r.statusCode == 200) {
                 console.log(b)
                 res.status(200).send(b);
+                if(r.data) {
+                  localStorage.setItem('userId', r.data.id)
+                }
               }
             })
           }
